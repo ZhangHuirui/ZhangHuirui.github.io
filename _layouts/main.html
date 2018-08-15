@@ -41,6 +41,11 @@ layout: default
         {% else %}
           <li class="email"><a href="mailto:example.david@blog.com"><i class="fa fa-envelope-o" aria-hidden="true"></i></a></li>
         {% endif %}
+        {% if site.social-weibo %}
+          <li class="weibo"><a href="{{site.social-weibo}}" target="_blank"><i class="fa fa-weibo"></i></a></li>
+        {% else %}
+          <li class="weibo"><a href="{{site.social-weibo}}" target="_blank"><i class="fa fa-weibo" aria-hidden="true"></i></a></li>
+        {% endif %}
       </ul>
     </section> <!-- End Section Contact -->
     <div class="copyright">
