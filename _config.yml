@@ -8,8 +8,8 @@ site-twitter: #if your site has a twitter account, enter it here
 
 # Author Settings
 author: zhanghuirui # add your name
-author-img: david-freeman.jpg # add your photo
-about-author: 我是一个程序员，专注程序开发五年，总是热衷于学习。 # add description
+author-img: zhanghuirui.png # add your photo
+about-author: 我是一个程序员，专注程序开发，总是热衷于学习。 # add description
 social-twitter: null # add your Twitter handle
 social-facebook: null # add your Facebook handle
 social-github: zhanghuirui # add your Github handle
