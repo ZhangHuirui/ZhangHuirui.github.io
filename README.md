@@ -1,8 +1,8 @@
-# Hux Blog
+# zhanghuirui Blog
 
-### [View Live Hux Blog &rarr;](https://huangxuan.me)
+### [View Live zhanghuirui Blog &rarr;](https://zhanghuirui.github.io)
 
-![](http://huangxuan.me/img/blog-desktop.jpg)
+![](http://zhanghuirui.me/img/blog-desktop.jpg)
 
 
 
