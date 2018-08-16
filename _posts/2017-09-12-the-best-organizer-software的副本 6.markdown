@@ -3,7 +3,7 @@ layout: post
 title: Spring Framework
 date: 2018-08-15 22:47:00 +0300
 description: 学习Spring框架
-img: Spring Framework.png # Add image post (optional)
+img: Spring-Framework.png # Add image post (optional)
 tags: [Spring, Software] # add tag
 ---
 
