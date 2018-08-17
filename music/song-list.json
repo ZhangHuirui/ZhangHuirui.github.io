@@ -3,8 +3,8 @@
     {
       "name": "Je Ne Serai Jamais Ta Parisienne",
       "artist": "Nolwenn Leroy",
-      "url": "song/Nolwenn Leroy - Je Ne Serai Jamais Ta Parisienne.mp3",
-      "cover": "img/Nolwenn Leroy - Je Ne Serai Jamais Ta Parisienne.jpg",
+      "url": "music/song/Nolwenn Leroy - Je Ne Serai Jamais Ta Parisienne.mp3",
+      "cover": "music/img/Nolwenn Leroy - Je Ne Serai Jamais Ta Parisienne.jpg",
       "lrc": "",
       "theme": "#ebd0c2",
       "type": "auto"

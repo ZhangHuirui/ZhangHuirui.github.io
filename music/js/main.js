@@ -17,8 +17,8 @@ const ap1 = new APlayer({
     audio: [{
         name: 'Je Ne Serai Jamais Ta Parisienne',//名字
         artist: 'Nolwenn Leroy',//艺术家
-        url: 'song/Nolwenn Leroy - Je Ne Serai Jamais Ta Parisienne.mp3',//音乐链接
-        cover: 'img/Nolwenn Leroy - Je Ne Serai Jamais Ta Parisienne.jpg',//音乐封面
+        url: 'music/song/Nolwenn Leroy - Je Ne Serai Jamais Ta Parisienne.mp3',//音乐链接
+        cover: 'music/img/Nolwenn Leroy - Je Ne Serai Jamais Ta Parisienne.jpg',//音乐封面
         lrc: "",//歌词
         theme: '#ebd0c2',//切换到此音频时的主题色，比上面的 theme 优先级高
         type: 'auto'//可选值: 'auto', 'hls', 'normal' 或其他自定义类型,
@@ -46,7 +46,7 @@ const ap1 = new APlayer({
 //     console.log('error');
 // });
 $.ajax({
-    url: 'song-list.json',
+    url: 'music/song-list.json',
     success: function (list) {
         ap1.list.add(list.songlist);
     }
