@@ -1,0 +1,30 @@
+---
+layout:       post
+title:        "音乐播放器"
+subtitle:     "HTML音乐播放器——Aplayer"
+date:         2018-08-16 21:35:00
+author:       "Zhanghuirui"
+header-img:   "img/in-post/aplayer.png"
+header-mask:  0.3
+catalog:      true
+multilingual: true
+tags:
+    - 前端开发
+    - JavaScript
+    - music
+    - aplayer
+---
+
+> 为我的博客增加点音乐
+
+## HTML音乐播放器
+
+APlayer ~🍭 Wow, such a beautiful HTML5 music player
+
+入门很简单，参考[中文文档](https://aplayer.js.org/#/zh-Hans/)
+
+## 定制播放器
+
+
+
+## 后记

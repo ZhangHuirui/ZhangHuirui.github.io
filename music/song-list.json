@@ -1,0 +1,22 @@
+{
+  "songlist": [
+    {
+      "name": "Je Ne Serai Jamais Ta Parisienne",
+      "artist": "Nolwenn Leroy",
+      "url": "song/Nolwenn Leroy - Je Ne Serai Jamais Ta Parisienne.mp3",
+      "cover": "img/Nolwenn Leroy - Je Ne Serai Jamais Ta Parisienne.jpg",
+      "lrc": "",
+      "theme": "#ebd0c2",
+      "type": "auto"
+    },
+    {
+      "name": "Je Ne Serai Jamais Ta Parisienne",
+      "artist": "Goose house",
+      "url": "Nolwenn Leroy - Je Ne Serai Jamais Ta Parisienne.mp3",
+      "cover": "http://p1.music.126.net/Xp3yNlIGncJe4VVXTKIyaQ==/109951163458709317.jpg",
+      "lrc": "",
+      "theme": "#ebd0c2",
+      "type": "auto"
+    }
+  ]
+}
