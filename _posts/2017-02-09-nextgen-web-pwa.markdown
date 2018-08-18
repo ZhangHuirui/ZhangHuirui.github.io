@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      "下一代 Web 应用模型 —— Progressive Web App"
+title:      "直到世界尽头"
 subtitle:   "The Next Generation Application Model For The Web - Progressive Web App"
 date:       2017-02-09 12:00:00
 author:     "Hux"
@@ -455,7 +455,7 @@ PWA 作为一个涵盖性术语，与过往的这些或多或少通过私有平�
 
 [42]: https://www.microsoft.com/en-us/WindowsForBusiness/End-of-IE-support "Internet Explorer End of Support"
 
-[43]: https://cloudfour.com/thinks/progressive-web-apps-simply-make-sense/?utm_source=mobilewebweekly&utm_medium=email#fn-4857-1 "Progressive Web Apps Simply Make Sense"
+[43]: https://cloudfour.com/thinks/progressive-web-apps-simply-make-sense/?utm_source=mobilewebweekly&amp;utm_medium=email#fn-4857-1 "Progressive Web Apps Simply Make Sense"
 
 [44]: https://medium.com/@owencm/the-surprising-tradeoff-at-the-center-of-question-whether-to-build-an-native-or-web-app-d2ad00c40fb2#.ym83ct2ax "The surprising tradeoff at the center of the question whether to build a Native or Web App"
 
