@@ -4,7 +4,7 @@ title:      "Hello Beijing"
 subtitle:   " \"Hello World, Hello Blog\""
 date:       2018-08-16 14:37:00
 author:     "Zhanghuirui"
-header-img: "img/post-bg-2018.jpg"
+header-img: "img/post/post-bg-2018.jpg"
 catalog: true
 tags:
     - 生活
