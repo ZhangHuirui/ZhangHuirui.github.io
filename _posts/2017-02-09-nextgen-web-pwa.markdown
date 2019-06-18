@@ -13,10 +13,8 @@ tags:
     - PWA
 ---
 
-
 > 今年 9 月份的时候，《程序员》杂志社就邀请我写一篇关于 PWA 的文章。后来花式拖稿，拖过了 10 月的 QCon，11 月的 GDG DevFest，终于在 12 月把这篇长文熬了出来。几次分享的不成熟，这次的结构算是比较满意了。「 可能是目前中文世界里对 PWA 最全面详细的长文了」，希望你能喜欢。<br><br>
 > 本文首发于 [CSDN](http://geek.csdn.net/news/detail/135595) 与《程序员》2017 年 2 月刊，同步发布于 [Hux Blog](https://huangxuan.me)、[前端外刊评论 - 知乎专栏](https://zhuanlan.zhihu.com/FrontendMagazine)，转载请保留链接 ;)
-
 
 ## 下一代 Web 应用？
 
@@ -39,7 +37,6 @@ Progressive Web Apps（以下简称 PWA）以及构成 PWA 的一系列关键技
 *图片来源: Hux & [Medium.com][i3]*
 
 当浏览器发现用户[需要][16] Flipkart Lite 时，它就会提示用户「嘿，你可以把它添加至主屏哦」（用户也可以手动添加）。这样，Flipkart Lite 就会像原生应用一样在主屏上留下一个自定义的 icon 作为入口；与一般的书签不同，当用户点击 icon 时，Flipkat Lite 将直接全屏打开，不再受困于浏览器的 UI 中，而且有自己的启动屏效果。
-
 
 ![](/img/in-post/post-nextgen-web-pwa/flipkart-2.jpeg)
 *图片来源: Hux & [Medium.com][i3]*
@@ -118,6 +115,7 @@ Web App Manifest，即通过一个清单文件向浏览器暴露 web 应用的�
   "background_color": "#fff",
 }
 ```
+
 ```html
 <!-- document -->
 <link rel="manifest" href="/manifest.json">
@@ -131,8 +129,6 @@ Web App Manifest，即通过一个清单文件向浏览器暴露 web 应用的�
 - `theme_color`/`background_color`：主题色与背景色，用于配置一些可定制的操作系统 UI 以提高用户体验，比如 Android 的状态栏、任务栏等。
 
 这个清单的成员还有很多，比如用于声明「对应原生应用」的 `related_applications` 等等，本文就不一一列举了。作为 PWA 的「户口本」，承载着 web 应用与操作系统集成能力的重任，Web App Manifest 还将在日后不断扩展，以满足 web 应用高速演化的需要。
-
-
 
 ### [Service Worker][spec2]
 
@@ -148,6 +144,7 @@ var localServer = google.gears.factory.create("bata.localserver");
 var store = localServer.createManagedStore(STORE_NAME);
 store.manifestUrl = "manifest.json"
 ```
+
 ```json
 // manifest.json - 假设 JSON 有注释
 {
@@ -165,6 +162,7 @@ store.manifestUrl = "manifest.json"
 ```html
 <html manifest="cache.appcache">
 ```
+
 ```
 CACHE MANIFEST
 
@@ -180,7 +178,6 @@ HTML5 App Cache 作为第二波「让 web 应用离线执行」的尝试，确�
 是啊，如果 App Cache 没有被设计得[烂到完全不可编程、无法清理缓存、几乎没有路由机制、出了 Bug 一点救都没有][s12]，可能就真没 Service Worker 什么事了。[App Cache 已经在前不久定稿的 HTML5.1 中被拿掉了，W3C 为了挽救 web 世界真是不惜把自己的脸都打肿了……][s13]
 
 时至今日，我们终于迎来了 Service Worker 的曙光。简单来说，Service Worker 是一个可编程的 Web Worker，它就像一个位于浏览器与网络之间的客户端代理，可以拦截、处理、响应流经的 HTTP 请求；配合随之引入 Cache Storage API，你可以自由管理 HTTP 请求文件粒度的缓存，这使得 Service Worker 可以从缓存中向 web 应用提供资源，即使是在离线的环境下。
-
 
 ![](/img/in-post/post-nextgen-web-pwa/sw-sw.png)
 *Service Worker 就像一个运行在客户端的代理*
@@ -231,15 +228,12 @@ self.onfetch = (e) => {
 
 可以看出，Service Worker 被设计为一个相对底层（low-level）、高度可编程、子概念众多，也因此异常灵活且强大的 API，故本文只能展示它的冰山一角。出于安全考虑，注册 Service Worker 要求你的 web 应用部署于 HTTPS 协议下，以免利用 Service Worker 的中间人攻击。笔者在今年 GDG 北京的 DevFest 上分享了 [Service Worker 101][b0]，涵盖了 Service Worker 譬如「网络优先」、「缓存优先」、「网络与缓存比赛」这些更复杂的缓存策略、学习资料、以及[示例代码][29]，可以供大家参考。
 
-
 ![](/img/in-post/post-nextgen-web-pwa/sw-race.png)
 *Service Worker 的一种缓存策略：让网络请求与读取缓存比赛*
 
 你也可以尝试在支持 PWA 的浏览器中访问笔者的博客 [Hux Blog][21]，感受 Service Worker 的实际效果：所有访问过的页面都会被缓存并允许在离线环境下继续访问，所有未访问过的页面则会在离线环境下展示一个自定义的离线页面。
 
 在笔者看来，**Service Worker 对 PWA 的重要性相当于 `XMLHTTPRequest` 之于 Ajax，媒体查询（Media Query）之于响应式设计，是支撑 PWA 作为「下一代 web 应用模型」的最核心技术。**由于 Service Worker 可以与包括 Indexed DB、Streams 在内的大部分 DOM 无关 API 进行交互，它的潜力简直无可限量。笔者几乎可以断言，Service Worker 将在未来十年里成为 web 客户端技术工程化的兵家必争之地，带来「离线优先（Offline-first）」的架构革命。
-
-
 
 ### Push Notification
 
@@ -268,15 +262,11 @@ self.addEventListener('notificationclick', event => {
 self.addEventListener('notificationclose', event => {  
   // Do something with the event  
 });
-
 ```
 
 对于 Push Notification，笔者的几次分享中一直都提的稍微少一些，一是因为 Push API 还处于 Editor Draft 的状态，二是目前浏览器与推送服务间的协议支持还不够成熟：Chrome（与其它基于 Blink 的浏览器）在 Chromium 52 之前只支持基于 Google 私有的 GCM/FCM 服务进行通知推送。不过好消息是，继 Firefox 44 之后，Chrome 52 与 Opera 39 也紧追其后实现了正在由 IETF 进行标准化的 [Web 推送协议（Web Push Protocol）][spec5]。
 
-
 如果你已经在使用 Google 的云服务（比如 Firebase），并且主要面向的是海外用户，那么在 web 应用上支持基于 GCM/FCM 的推送通知并不是一件费力的事情，笔者推荐你阅读一下 Google Developers 的[系列文章][25]，很多国外公司已经玩起来了。
-
-
 
 ## 从 Hybrid 到 PWA，从封闭到开放
 
@@ -297,7 +287,6 @@ PWA 作为一个涵盖性术语，与过往的这些或多或少通过私有平�
 
 而又正因为 web 是一个整体，PWA 可以利用的技术远不止上述的几个而已：Ajax、响应式设计、JavaScript 框架、ECMAScript Next、CSS Next、Houdini、Indexed DB、Device APIs、Web Bluetooth、Web Socket、Web Payment、[孵化][spec6]中的 [Background Sync API][30]、[Streams][spec9]、WebVR……开放 Web 世界 27 年来的发展以及未来的一切，都与 PWA 天作之合。
 
-
 ## 鱼与熊掌的兼得
 
 经过几年来的摸索，整个互联网行业仿佛在「Web 应用 vs. 原生应用」这个问题上达成了共识：
@@ -313,7 +302,6 @@ PWA 作为一个涵盖性术语，与过往的这些或多或少通过私有平�
 但是，PWA 的出现，让鱼与熊掌兼得变成了可能 —— 它同时具备了 web 应用与原生应用的优点，有着自己独有的先进性：「浏览器 -> 添加至主屏/安装 -> 具备原生应用体验的 PWA -> 推送通知 -> 具备原生应用体验的 PWA」，PWA 自身就包含着从拉新到保活的闭环。
 
 除此之外，PWA 还继承了 web 应用的另外两大优点：**无需先付出几十兆的下载安装成本即可开始使用**，以及**不需要经过应用超市审核就可以发布新版本**。所以，PWA 可以称得上是一种「流式应用（Streamable App）」与「常青应用（Evergreen App）」
-
 
 ## 未来到来了吗
 
@@ -332,7 +320,6 @@ PWA 作为一个涵盖性术语，与过往的这些或多或少通过私有平�
 贺老（贺师俊）曾说过：「从纯 Web 到纯 Native，之间有许多可能的点」。当考虑移动应用的技术选型时，除了 Web 与原生应用，我们还有各种不同程度的 Hybrid，还有今年爆发的诸多 JS-to-Native 方案。
 
 虽然我在上文中用了「复仇」这样的字眼，不过无论从技术还是商业的角度，我们都没必要把 web 或是 PWA 放到 Native 的对立面去看。它们当然存在竞争关系，但是更多的时候，web-only 与 app-only 的策略都是不完美的，当公司资源足够的时候，我们通常会选择同时开发两者。[当然，无论与不与原生应用对比，PWA 让 web 应用变得体验更好这件事本身是毋庸置疑的。][43]「不谈场景聊技术都是扯淡」，[我们仍然还是需要根据自己产品与团队的情况来决定对应的技术选型与平台策略，只是 PWA 让 web 应用在面对选型考验时更加强势了而已。][44]
-
 
 ![](/img/in-post/post-nextgen-web-pwa/qcon-trend.png)
 *众多的技术选型，以及笔者的一种猜测*
@@ -355,7 +342,6 @@ PWA 作为一个涵盖性术语，与过往的这些或多或少通过私有平�
 
 反观印度，由于 Google 服务健全、标配 Chrome 的 Android 手机市占率非常高，PWA 的用户达到率简直直逼 100%，也难免获得无数好评与支持了。**笔者奢望着本文能对推动 PWA 的国内环境有一定的贡献。**不过无论如何，PWA 在国内的春天可能的确会来得稍微晚一点了。
 
-
 ## 结语
 
 「[我们信仰 Web，不仅仅在于软件、软件平台与单纯的技术][q97]，还在于[『任何人，在任何时间任何地点，都可以在万维网上发布任何信息，并被世界上的任何一个人所访问到。』而这才是 web 的最为革命之处，堪称我们人类，作为一个物种的一次进化。][27]」
@@ -369,7 +355,6 @@ PWA 作为一个涵盖性术语，与过往的这些或多或少通过私有平�
 ---
 
 *注：在笔者撰文期间，Google 在 Google China Developers Days 上宣布了 developers.google.cn 域名的启用，方便国内开发者访问。对于文中所有链向 developers.google.com 的参考文献，应该都可以在 cn 站点中找到。*
-
 
 [1]: http://nerds.airbnb.com/isomorphic-javascript-future-web-apps/ "Isomorphic JavaScript: The Future of Web Apps"
 
@@ -471,7 +456,6 @@ PWA 作为一个涵盖性术语，与过往的这些或多或少通过私有平�
 
 [50]: youtu.be/y1B2c3ZD9fk?t=1h14m48s "WWDC 2017"
 
-
 [spec1]: https://w3c.github.io/manifest/#use-cases-and-requirements "Web App Manifest"
 
 [spec2]: https://w3c.github.io/ServiceWorker/ "Service Worker"
@@ -494,7 +478,6 @@ PWA 作为一个涵盖性术语，与过往的这些或多或少通过私有平�
 
 [spec11]: https://www.w3.org/TR/2011/WD-html5-20110525/offline.html "HTML5 5.6 Offline Web Applications"
 
-
 [i1]: http://appleinsider.com/articles/08/10/03/latest_iphone_software_supports_full_screen_web_apps.html
 
 [i2]: https://developers.google.com/web/events/pwaroadshow/
@@ -502,7 +485,6 @@ PWA 作为一个涵盖性术语，与过往的这些或多或少通过私有平�
 [i3]: https://medium.com/@AdityaPunjani/building-flipkart-lite-a-progressive-web-app-2c211e641883#.hz4d3kw41 "Building Flipkart Lite: A Progressive Web App"
 
 [i4]: https://twitter.com/adityapunjani
-
 
 [q37]: https://huangxuan.me/pwa-qcon2016/#/37 "PWA@QCon2016 #37"
 

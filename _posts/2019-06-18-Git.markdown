@@ -1,0 +1,21 @@
+---
+layout:     post
+title:      "Git"
+subtitle:   "Git使用手册"
+date:       2019-06-18 12:00:00
+author:     "Zhang huirui"
+header-img: "img/post-bg-nextgen-web-pwa.jpg"
+header-mask: 0.3
+catalog:    true
+tags:
+    - git
+    - version control
+---
+
+> Git is a  [free and open source](https://git-scm.com/about/free-and-open-source)  distributed version control system designed to handle everything from small to very large projects with speed and efficiency.
+
+## Git
+
+
+
+### 参考文档
