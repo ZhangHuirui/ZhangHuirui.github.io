@@ -24,7 +24,6 @@ data sources
 - structured data sources
   
   - Relational databases
-    
     - MySQL
 
 - semi-structured data sources
@@ -55,8 +54,6 @@ The  `export`  tool exports a set of files from HDFS back to an RDBMS. The targe
 
 [`sqoop-job`](http://sqoop.apache.org/docs/1.4.7/SqoopUserGuide.html#_literal_sqoop_job_literal)
 
-
-
 [`sqoop-metastore`](http://sqoop.apache.org/docs/1.4.7/SqoopUserGuide.html#_literal_sqoop_metastore_literal)
 
 [`sqoop-merge`](http://sqoop.apache.org/docs/1.4.7/SqoopUserGuide.html#_literal_sqoop_merge_literal)
@@ -64,8 +61,6 @@ The  `export`  tool exports a set of files from HDFS back to an RDBMS. The targe
 [`sqoop-codegen`](http://sqoop.apache.org/docs/1.4.7/SqoopUserGuide.html#_literal_sqoop_codegen_literal)
 
 [`sqoop-create-hive-table`](http://sqoop.apache.org/docs/1.4.7/SqoopUserGuide.html#_literal_sqoop_create_hive_table_literal)
-
-
 
 Sqoop2(1.99.7)
 
@@ -82,8 +77,6 @@ Client modes
   - update
   
   - clone
-
-
 
 ### 参考文档
 

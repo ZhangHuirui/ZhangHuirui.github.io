@@ -64,7 +64,7 @@ tags:
 
 Table `webtable`
 
-| Row Key           | Time Stamp | Column Family  contents    | Column Family anchor          | Column Family people       |
+| Row Key           | Time Stamp | Column Family  contents    | Column Family anchor          | Column Family people       |
 | ----------------- |:---------- | -------------------------- | ----------------------------- | -------------------------- |
 | "com.cnn.www"     | t9         |                            | anchor:cnnsi.com = "CNN"      |                            |
 | "com.cnn.www"     | t8         |                            | anchor:my.look.ca = "CNN.com" |                            |
@@ -200,10 +200,6 @@ HBase是否支持联合是一个网上常问问题。简单来说 : 不支持。
 
 ##### ACID
 
-
-
-
-
 #### HBase Meta表
 
 ##### Meta表作用
@@ -235,20 +231,6 @@ info里面包含三个Column：regioninfo, server, serverstartcode。
 如果已经读取过一次，则root表和.META都会缓存到本地，直接去用户表的位置读取数据。
 
 #### HBase HBCK
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
