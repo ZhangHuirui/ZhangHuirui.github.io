@@ -1,0 +1,23 @@
+---
+layout:     post
+title:      "Azkaban"
+subtitle:   "Book List"
+date:       2019-06-18 12:00:00
+author:     "Zhang huirui"
+header-img: "img/post-bg-nextgen-web-pwa.jpg"
+header-mask: 0.3
+catalog:    true
+tags:
+    - workerflow
+    - hadoop job
+    - ETL
+    - data analytics
+---
+
+> Azkaban is a distributed Workflow Manager, implemented at LinkedIn to solve the problem of Hadoop job dependencies. We had jobs that needed to run in order, from ETL jobs to data analytics products.
+
+## Azkaban
+
+Azkaban
+
+Features

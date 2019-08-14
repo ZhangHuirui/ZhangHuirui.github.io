@@ -1,20 +1,18 @@
 ---
 layout:     post
-title:      "书单目录"
-subtitle:   "Book List"
+title:      "Kubernetes"
+subtitle:   "Kubernetes"
 date:       2019-06-18 12:00:00
 author:     "Zhang huirui"
 header-img: "img/post-bg-nextgen-web-pwa.jpg"
 header-mask: 0.3
 catalog:    true
 tags:
-    - 书单
-    - 互联网
-    - 技术
+    - Kubernetes
 ---
 
-> book list
+> Kubernetes
 
-## 书单？
+## Kubernetes
 
 《Kubernetes进阶实战》

@@ -124,7 +124,7 @@ The following diagram shows how queries and data flow through this architecture,
 
 ![druid-architecture](../img/druid-architecture.png)
 
-# Datasources and segments
+#### Datasources and segments
 
 Druid 的数据存储在 "datasources"中, 它类似于传统RDBMS中的表。每一个 datasource根据时间分割，或者根据其他属性分割（可选） 。每个时间范围被叫做一个 "chunk" (例如, 一天，如果你的datasource是按照天划分的). chunk中数据被划分成一个或多个"segments"。每个segment是个单独的文件,包含数百万的数据行。 因为 segments被组织成时间chunks，有时候，把segments想象成在时间轴上是有帮助的，就像下面这样:
 
@@ -141,7 +141,7 @@ A datasource may have anywhere from just a few segments, up to hundreds of thous
 
 Periodically, segments are committed and published. At this point, they are written to  [deep storage](https://druid.apache.org/docs/latest/design/index.html#deep-storage), become immutable, and move from MiddleManagers to the Historical processes (see  [Architecture](https://druid.apache.org/docs/latest/design/index.html#architecture)  above for details). An entry about the segment is also written to the  [metadata store](https://druid.apache.org/docs/latest/design/index.html#metadata-storage). This entry is a self-describing bit of metadata about the segment, including things like the schema of the segment, its size, and its location on deep storage. These entries are what the Coordinator uses to know what data  *should*  be available on the cluster.
 
-# Query processing
+#### 查询 processing
 
 Queries first enter the Broker, where the Broker will identify which segments have data that may pertain to that query. The list of segments is always pruned by time, and may also be pruned by other attributes depending on how your datasource is partitioned. The Broker will then identify which Historicals and MiddleManagers are serving those segments and send a rewritten subquery to each of those processes. The Historical/MiddleManager processes will take in the queries, process them and return results. The Broker receives results and merges them together to get the final answer, which it returns to the original caller.
 
@@ -153,13 +153,49 @@ So Druid uses three different techniques to maximize query performance:
 - Within each segment, using indexes to identify which rows must be accessed.
 - Within each segment, only reading the specific rows and columns that are relevant to a particular query.
 
-#### 导入数据
+### 四、安装和配置
 
+Druid Console
 
+[http://localhost:8888/](http://localhost:8888/)
 
-### 四、安装
+- DataSources
 
-### 五、使用
+- Segments
+
+- Tasks
+
+- Data servers
+
+- SQL
+
+- Config
+
+#### 保留和自动丢弃数据
+
+在Apache Druid中，协调进程（Coordinator）使用规则（rule）来确定应该将哪些数据加载到集群或从集群中删除哪些数据。rule用于数据保留和查询执行，并在Coordinator console上设置。
+
+规则有三种类型，即、load rules、drop rules和broadcast rules。load rules指示应该如何将段分配给不同的Historical process，以及每个层中应该存在多少段的副本。Drop rules指示何时应该完全从集群中删除段。最后，broadcast rules指出不同DataSources的Segments应该如何在Historical process中共存。
+
+Coordinator从元数据存储中加载一组规则。规则可能特定于某个数据源，可以配置一组默认规则。规则按顺序读取，因此规则的顺序很重要。协调器将循环遍历所有可用段，并将每个段与应用的第一个规则匹配。每个段只能匹配一个规则。
+
+注意:建议使用协调器控制台配置规则。然而，协调器流程确实有HTTP端点以编程方式配置规则。
+
+当规则更新时，更改可能要等到协调器下一次运行时才会反映出来。这个问题将在不久的将来得到解决。
+
+- Load Rules
+  
+  - Load规则指示服务器层中应该存在多少段的副本。请注意:如果Load规则仅用于保留来自某个间隔或时间段的数据，那么它必须伴有Drop规则。如果没有包含Drop规则，则默认规则(loadForever)将保留未在指定间隔或期间内的数据。
+
+- Drop Rules
+  
+  - Drop规则指示何时应该从集群中删除段。
+
+- Broadcast Rules
+  
+  - 广播规则指示不同数据源的段应该如何在历史进程中共存。一旦为数据源配置了广播规则，就将数据源的所有段广播到包含共存数据源的任何段的服务器。
+
+### 五、数据导入
 
 #### 1、Load
 
@@ -243,7 +279,7 @@ dsql客户
 
 #### 3、Rollup
 
-Roll-up is a first-level aggregation operation over a selected set of columns that reduces the size of stored segments.
+Roll-up是对选定列集的一级聚合操作，该操作可减小存储段的大小。
 
 ```json
 {
@@ -299,61 +335,43 @@ Roll-up is a first-level aggregation operation over a selected set of columns th
 }
 ```
 
+#### 4、更新存在的数据
 
+##### 覆盖原有数据
 
+初始导入数据
 
+```bash
+bin/post-index-task --file quickstart/tutorial/updates-init-index.json
+```
 
+设置
 
+`"appendToExisting":fase`
 
+`"type" : "local"`
 
+```bash
+bin/post-index-task --file quickstart/tutorial/updates-overwrite-index.json
+```
 
-数据格式
+##### 结合新老数据并覆盖
 
-- 数据源datasources（类比数据库表）
+`"appendToExisting":fase`
 
-- 时间列TimeStamp
+`"type" : "combining"`
 
-- 维度列Dimension，标示一个事件（Event）
+```bash
+bin/post-index-task --file quickstart/tutorial/updates-append-index.json 
+```
 
-- 指标列Metric，用于聚合和计算的列（Fact）
+##### 追加数据
 
-数据摄入
+```bash
+bin/post-index-task --file quickstart/tutorial/updates-append-index2.json
+```
 
-- 实时Kafka
-
-- 批量HDFS，CVS等
-
-数据查询
-
-- JSON+HTTP
-
-- 不支持SQL
-
-- 支持多中语言Java、Python、R、JavaScript和Ruby
-
-- 不支持join
-
-
-
-
-
-
-
-Druid Console
-
-[http://localhost:8888/](http://localhost:8888/)
-
-- DataSources
-
-- Segments
-
-- Tasks
-
-- Data servers
-
-- SQL
-
-- Config
+### 六、查询
 
 ### 参考资料
 

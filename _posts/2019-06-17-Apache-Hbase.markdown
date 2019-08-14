@@ -8,9 +8,9 @@ header-img: "img/post-bg-nextgen-web-pwa.jpg"
 header-mask: 0.3
 catalog:    true
 tags:
-    - hbase
-    - nosql
-    - hadoop
+    - HBase
+    - NoSQL
+    - Hadoop
 ---
 
 > [Apache](http://www.apache.org/)  HBase™ is the  [Hadoop](http://hadoop.apache.org/)  database, a distributed, scalable, big data store.
